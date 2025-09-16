@@ -1,34 +1,28 @@
 {% extends 'base.html' %}
 
-{% extends 'base.html' %}
-
 {% block content %}
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">Películas</h1>
-        <a href="{% url 'create_pelicula' %}" class="btn btn-success">Crear nueva película</a>
-    </div>
-    <div class="row">
-        {% for pelicula in peliculas %}
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ pelicula.title }}</h5>
-                        <p class="card-text">{{ pelicula.description }}</p>
-                        <ul class="list-unstyled mb-3">
-                            <li><strong>Usuario:</strong> {{ pelicula.user.username }}</li>
-                            <li><strong>Creada:</strong> {{ pelicula.created }}</li>
-                            <li><strong>Completada:</strong> {{ pelicula.datecompleted }}</li>
-                        </ul>
-                        <a href="{% url 'seleccionar' pelicula.id %}" class="btn btn-primary">Seleccionar</a>
-                    </div>
-                </div>
-            </div>
-        {% empty %}
-            <div class="col-12">
-                <div class="alert alert-info text-center">No hay películas disponibles.</div>
-            </div>
-        {% endfor %}
-    </div>
-</div>
+<h1>Peliculas</h1>
+<ul>
+    {%for pelicula in peliculas %}
+        <li>
+             {% if task.important %}
+                <strong>{{ pelicula.title }}</strong>
+            {% else %}
+                {{ pelicula.title }}
+            {% endif %}
+
+            <p>{{ pelicula.description }}</p>
+            <p>{{ pelicula.user.username }}</p>
+            <p>{{ pelicula.created }}</p>
+            <p>{{ pelicula.datecompleted }}</p>
+
+            <a href="{% url 'seleccionar' pelicula.id %}">Seleccionar</a>
+        </li>
+    {% empty %}
+        <li>No hay peliculas disponibles.</li>
+    {% endfor %}
+   
+</ul>
+
+<a href ="{% url 'create_peliculas' %}">Crear nuevas peliculas </a>
 {% endblock %}

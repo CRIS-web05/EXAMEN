@@ -14,13 +14,11 @@ def peliculas(request):
     peliculas = Pelicula.objects.filter(user=request.user)
     return render(request, "peliculas.html", {"peliculas": peliculas})
 
-def seleccionar_pelicula(request, pelicula_id):
-    pelicula = get_object_or_404(Pelicula, id=pelicula_id, user=request.user)
-    if request.method == "POST":
-        return redirect('peliculas')
+def seleccionar_pelicula(request, id):
+    pelicula = get_object_or_404(Pelicula, pk=id)
     return render(request, 'seleccionar.html', {'pelicula': pelicula})
-
 def create_peliculas(request):
+    
     if request.method == "GET":
         return render(request, "create_peliculas.html", {"form": PeliculaForm()})
     else:
