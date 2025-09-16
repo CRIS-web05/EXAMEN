@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">Seleccionar Película</h3>
+        </div>
+        <div class="card-body text-center">
+            <p>
+                ¿Qué quieres hacer con la película <strong>"{{ pelicula.title }}"</strong>?
+            </p>
+            <div class="d-flex justify-content-center gap-2 mt-4">
+                <a href="{% url 'editar_pelicula' pelicula.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'eliminar_pelicula' pelicula.id %}" class="btn btn-danger">Eliminar</a>
+                <a href="{% url 'peliculas' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

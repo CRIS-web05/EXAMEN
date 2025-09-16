@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Crear Peliculas</h1>
+{{error}}
+<form action="/peliculas/create/" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit"> Crear Peliculas</button>
+{% endblock %}
